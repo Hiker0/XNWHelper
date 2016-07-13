@@ -7,7 +7,10 @@
     <uses-sdk
         android:minSdkVersion="18"
         android:targetSdkVersion="21" />
-
+    <uses-permission 
+        android:name="android.Manifest.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission 
+        android:name="android.Manifest.permission.READ_EXTERNAL_STORAGE"/>
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -27,11 +30,6 @@
 
                 <category android:name="android.intent.category.allen" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name="com.allen.xnwhelper.Main2"
-            android:exported="true"
-            android:label="@string/app_name" >
         </activity>
         <service
             android:name=".RegisterAccessibilityService"

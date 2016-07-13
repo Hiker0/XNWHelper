@@ -18,7 +18,7 @@ public class RegisterAccessibilityService extends AccessibilityService {
 	static int WINDOW_IDENTIFY= 4;
 	
 	int window = WINDOW_NONE;
-	boolean enabled = false;
+	boolean enabled = true;
 	static String PACKAGE="com.xnw.qun";
 	
 	@Override
@@ -79,9 +79,6 @@ public class RegisterAccessibilityService extends AccessibilityService {
 	    		findAndPerformAction(PACKAGE+":id/btn_submit");
 	    	}
 	    }
-	    
-
-	    
 	}
 	
 	private void findAndPerformAction(String text){

@@ -1,37 +1,33 @@
 package com.allen.xnwhelper;
 
+import java.io.File;
+import java.io.IOException;
+
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
+import android.util.AtomicFile;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 
 public class Main extends Activity {
-
+    File tarFile;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.button_test);
-		Button button1= (Button) this.findViewById(R.id.button1);
-		button1.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				//Intent intent = Main.this.getIntent();
-				Intent intent = new Intent();
-				intent.setClass(getApplicationContext(), Main2.class);
-				Main.this.startActivity(intent);
-				Main.this.setResult(RESULT_OK, intent);
-			    finish();
-			}
-		});
+		File root = this.getExternalFilesDir(null);
+		File file = new File(root,"xnw_info");
+		if(!file.exists()){
+		    try {
+		        file.createNewFile();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+		}
 		
-		Intent intent = Main.this.getIntent();
-		Main.this.setResult(RESULT_CANCELED, intent);
-	    //finish();
+		tarFile = file;
+		Log.d("allen", "root:"+root.getAbsolutePath());
 	}
 
 	@Override
@@ -39,8 +35,13 @@ public class Main extends Activity {
 		// TODO Auto-generated method stub
 		super.onResume();
 		Log.d("allen", "onResume");
-
-		//}
+		
+		for (int i=0;i<100;i++){
+		    String pwd = Utils.generatePwd(6, 10);
+		    Log.d("allen","pwd:"+pwd);
+		    UserInfo info = new UserInfo("12144e23",pwd);
+		    info.doStore(tarFile);
+		}
 	}
 
 	@Override
