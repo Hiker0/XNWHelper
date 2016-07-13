@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<accessibility-service
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:description="@string/app_name"
+    android:accessibilityEventTypes="typeWindowStateChanged|typeWindowContentChanged|typeNotificationStateChanged"
+    android:accessibilityFeedbackType="feedbackAllMask"
+    android:packageNames="com.xnw.qun"
+    android:notificationTimeout="10"
+    android:settingsActivity="com.allen.xnwhelper.SettingsActivity"
+    android:accessibilityFlags="flagDefault"
+    android:canRetrieveWindowContent="true"/>
