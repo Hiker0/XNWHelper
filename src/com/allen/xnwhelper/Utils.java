@@ -60,7 +60,6 @@ public class Utils {
        
        return pwd.toString();
    }
-    
    //generate a password whose length is in range num1 to num2
    static public String generatePwd(int num1, int num2){
        if(num1 < 0 || num1 > num2){
@@ -69,5 +68,34 @@ public class Utils {
        int length =  r.nextInt(num2-num1)+num1;
        
        return generatePwd(length);
+   }  
+   //generate a password whose length is num
+   static  public String generateName(int num){
+       if(num < 0){
+           return null;
+       }
+       StringBuffer pwd = new StringBuffer("");
+       for(int i=0;i < num; i++){
+           char ch ;
+           if(i< 2){
+               ch = getOneLetter();
+           }else{
+               ch = getOneNum();
+           }
+           
+           pwd.append(ch);
+       }
+       
+       return pwd.toString();
+   }
+    
+   //generate a password whose length is in range num1 to num2
+   static public String generateName(int num1, int num2){
+       if(num1 < 0 || num1 > num2){
+           return null;
+       }
+       int length =  r.nextInt(num2-num1)+num1;
+       
+       return generateName(length);
    }
 }
