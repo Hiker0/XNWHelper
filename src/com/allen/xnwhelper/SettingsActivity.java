@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class SettingsActivity extends Activity {
     File tarFile;
@@ -16,23 +17,11 @@ public class SettingsActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		this.setContentView(R.layout.button_test);
+		this.setContentView(R.layout.main_layout);
 		
-		Button btn = (Button) this.findViewById(R.id.button1);
-		btn.setOnClickListener(new View.OnClickListener() {
-            
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                Intent intent = new Intent();
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                //intent.setAction("com.xnw.qun.activity.LoginActivity");
-                //intent.addCategory("android.intent.category.DEFAULT");
-                intent.setClassName("com.xnw.qun", "com.xnw.qun.activity.SetActivity");
-                SettingsActivity.this.startActivity(intent);
-            }
-        });
+		TextView mInfo = (TextView) this.findViewById(R.id.info_position);
 		
+
 		File root = this.getExternalFilesDir(null);
 		File file = new File(root,"xnw_info");
 		if(!file.exists()){
@@ -45,6 +34,8 @@ public class SettingsActivity extends Activity {
 		}
 		
 		tarFile = file;
+            mInfo.setText("Éú³ÉÃÜÂëÂ·¾¶:"+tarFile.getPath());
+            // TODO Auto-generated catch block
 		Log.d("allen", "root:"+root.getAbsolutePath());
 	}
 
@@ -52,15 +43,6 @@ public class SettingsActivity extends Activity {
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		Log.d("allen", "onResume");
-		
-//		for (int i=0;i<100;i++){
-//		    String pwd = Utils.generatePwd(6, 10);
-//		    Log.d("allen","pwd:"+pwd);
-//		    UserInfo info = new UserInfo("13816456378",pwd);
-//		    info.setUserName(Utils.generateName(5, 8));
-//		    info.doStore(tarFile);
-//		}
 	}
 
 	@Override

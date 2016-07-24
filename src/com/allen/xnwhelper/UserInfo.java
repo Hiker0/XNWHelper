@@ -45,7 +45,7 @@ public class UserInfo {
 	    try {
 	        FileOutputStream os = new FileOutputStream(file,true);
 	        out = new BufferedWriter(new OutputStreamWriter(os));
-	        out.write(phoneNum+"    "+password+ "   "+username +"\n");
+	        out.write(phoneNum+"    "+password +"\n");
 	        out.close();
         } catch (IOException e) {
             // TODO Auto-generated catch block

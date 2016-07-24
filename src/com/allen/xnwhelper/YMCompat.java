@@ -187,9 +187,10 @@ public class YMCompat {
             // TODO Auto-generated method stub
             Log.d(TAG, "getCodeRunable count:"+count);
             count++;
-            if(count <= 20){
+            if(count <= 100){
                 doGetCode();
             }else{
+                count = 0;
                 mListener.onGetVerifyCode(false, null);
                 waitingCode = false;
                 if(!codeTask.isCancelled()){
@@ -209,6 +210,10 @@ public class YMCompat {
         return "";  
     }  
     
+    void startGetCode(){
+        count = 0;
+        doGetCode();
+    }
     void doGetCode() {
         if(waitingCode){
             return;

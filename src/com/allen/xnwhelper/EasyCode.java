@@ -223,6 +223,7 @@ public class EasyCode extends Activity {
                                 code = str[1];
                                 mCodeView.setText(
                                         "state=" + str[0] + "\n" + code);
+                                count=0;
                                 return;
                             }
                         }
