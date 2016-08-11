@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array
+        name="error_code">
+        <item>1001</item>
+		<item>1002</item>
+		<item>1003</item>
+		<item>1004</item>
+		<item>1005</item>
+		<item>1006</item>
+		<item>1007</item>
+		<item>1008</item>
+		<item>1009</item>
+		<item>1010</item>
+		<item>1011</item>
+		<item>1012</item>
+		<item>2001</item>
+		<item>2002</item>
+		<item>2003</item>
+		<item>2004</item>
+		<item>2005</item>
+		<item>2006</item>
+		<item>2007</item>
+		<item>2008</item>
+		<item>2009</item>
+		<item>3001</item>
+		<item>3002</item>
+		<item>3003</item>
+		<item>3004</item>
+		<item>3005</item>
+		<item>3006</item>
+		<item>3007</item>
+		<item>3008</item>
+		<item>9001</item>
+		<item>9002</item>
+		<item>9003</item>
+    </integer-array>
+</resources>

@@ -34,9 +34,25 @@ public class SettingsActivity extends Activity {
 		}
 		
 		tarFile = file;
-            mInfo.setText("生成密码路径:"+tarFile.getPath());
+            mInfo.setText("生成密码路径:"+"\n"+tarFile.getPath());
             // TODO Auto-generated catch block
 		Log.d("allen", "root:"+root.getAbsolutePath());
+		
+		Button button = (Button) findViewById(R.id.btn_start_xnw);
+		button.setOnClickListener(new View.OnClickListener() {
+            
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                try{
+                    Intent intent = new Intent();
+                    intent.setClassName("com.xnw.qun", "com.xnw.qun.activity.register.UserRegisterActivity");
+                    SettingsActivity.this.startActivity(intent);
+                }catch(Exception e){
+                    Log.d("allen",e.toString());
+                }
+            }
+        });
 	}
 
 	@Override
