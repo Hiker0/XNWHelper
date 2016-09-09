@@ -22,6 +22,8 @@ public class YMCompat {
     final static String Country_id = "1";
     final static String Province_id = "370000";
     final static long TIMEOUT_MILLS=600*1000;
+    final static String HOST="http://api.51ym.me";
+    final static String VIP_HOST="http://vip.51ym.me:8088";
     
 //    private String UserName;
 //    private String PassWord;
@@ -91,7 +93,7 @@ public class YMCompat {
             protected String doInBackground(String... params) {
                 // TODO Auto-generated method stub
                 return doGet(
-                        "http://api.51ym.me/UserInterface.aspx?action=logout&token="
+                        VIP_HOST+"/UserInterface.aspx?action=logout&token="
                                 + token);
             }
 
@@ -117,7 +119,7 @@ public class YMCompat {
                 // TODO Auto-generated method stub
                 freshTimer();
                 return doGet(
-                        "http://api.51ym.me/UserInterface.aspx?action=login&username="
+                        VIP_HOST+"/UserInterface.aspx?action=login&username="
                                 + UserName + "&password=" + PassWord);
             }
 
@@ -159,7 +161,7 @@ public class YMCompat {
                 // TODO Auto-generated method stub
                 freshTimer();
                 return doGet(
-                        "http://api.51ym.me/UserInterface.aspx?action=getmobile"
+                        VIP_HOST+"/UserInterface.aspx?action=getmobile"
                                 + "&itemid=" + XNW_ID + "&country=" + Country_id
                                 + "&province=" + Province_id + "&token="
                                 + token);
@@ -180,7 +182,13 @@ public class YMCompat {
                             phoneNumber = str[1];
                             success = true;
                             mListener.onGetPhoneNum(success, phoneNumber);
+                        }else{
+                            success = false;
+                            mListener.onGetPhoneNum(success, null);
                         }
+                    }else{
+                        success = false;
+                        mListener.onGetPhoneNum(success, result);
                     }
                 }
 
@@ -201,7 +209,7 @@ public class YMCompat {
                 // TODO Auto-generated method stub
                 freshTimer();
                 return doGet(
-                        "http://api.51ym.me/UserInterface.aspx?action=release"
+                        VIP_HOST+"/UserInterface.aspx?action=release"
                                 + "&mobile=" + num + "&itemid=" + XNW_ID
                                 + "&token=" + token);
             }
@@ -240,7 +248,7 @@ public class YMCompat {
                 // TODO Auto-generated method stub
                 freshTimer();
                 return doGet(
-                        "http://api.51ym.me/UserInterface.aspx?action=releaseall"
+                        VIP_HOST+"/UserInterface.aspx?action=releaseall"
                                 + "&token=" + token);
             }
 
@@ -281,7 +289,7 @@ public class YMCompat {
                 doGetCode();
             } else {
                 count = 0;
-                mListener.onGetVerifyCode(false, null);
+                mListener.onGetVerifyCode(false, "3001");
                 waitingCode = false;
                 if (!codeTask.isCancelled()) {
                     codeTask.cancel(true);
@@ -320,7 +328,7 @@ public class YMCompat {
                 // TODO Auto-generated method stub
                 freshTimer();
                 return doGet(
-                        "http://api.51ym.me/UserInterface.aspx?action=getsms"
+                        VIP_HOST+"/UserInterface.aspx?action=getsms"
                                 + "&mobile=" + phoneNumber + "&itemid=" + XNW_ID
                                 + "&token=" + token);
             }

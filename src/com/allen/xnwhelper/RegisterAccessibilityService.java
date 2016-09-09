@@ -53,7 +53,7 @@ public class RegisterAccessibilityService extends AccessibilityService
     private TextView mCountView;
     private int statusBarHeight;
     private int mCount = 0;
-    private HashMap<Integer,String> map;
+    private HashMap<Integer,String> mErrors;
     private Handler mHandler;
     @Override
     public void onCreate() {
@@ -63,18 +63,24 @@ public class RegisterAccessibilityService extends AccessibilityService
         if (sGetedNums == null) {
             sGetedNums = new ArrayList<String>();
         }
-        String[] erros = getResources().getStringArray(R.array.errors);
-        int[] codes = getResources().getIntArray(R.array.error_code);
-        
-        map = new HashMap<Integer,String>();
-        for(int i=0;i< erros.length;i++){
-            map.put(codes[i], erros[i]);
-        }
+
         mHandler = new Handler();
         
         initFloatTool();
+        initErrors();
     }
 
+    private void initErrors(){
+        String[] erros = getResources().getStringArray(R.array.errors);
+        int[] codes = getResources().getIntArray(R.array.error_code);
+        
+        mErrors = new HashMap<Integer,String>();
+        for(int i=0;i< erros.length;i++){
+            mErrors.put(codes[i], erros[i]);
+        }
+        
+        mErrors.put(-1, "服务器端返回错误");
+    }
     private void initFloatTool() {
         mWindowManager = (WindowManager) getSystemService(
                 Context.WINDOW_SERVICE);
@@ -434,7 +440,13 @@ public class RegisterAccessibilityService extends AccessibilityService
             }
 
         } else if(!success){
-            showInfo("获取手机号码失败");
+            int errorCode = -1;
+            if(num != null){
+                errorCode = Integer.parseInt(num);
+            }
+            String error = mErrors.get(errorCode);
+            
+            showInfo("获取手机号码失败:"+error);
             mUserInfo = null;
         }
     }
@@ -451,9 +463,16 @@ public class RegisterAccessibilityService extends AccessibilityService
             setState(State.identify_filled);
 
         } else {
+            int errorCode = -1;
+            if(code != null){
+                errorCode = Integer.parseInt(code);
+            }
+            String error = mErrors.get(errorCode);
+            
             mUserInfo = null;
-            showInfo("获取验证码失败");
+            showInfo("获取验证码失败:" + error);
             mState =State.unkown;
+            
             try{
                 Intent intent = new Intent();
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK |Intent.FLAG_ACTIVITY_CLEAR_TASK);

@@ -1,8 +1,19 @@
 package com.allen.xnwhelper;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.Random;
 
 public class Utils {
+    public static final String ENCODE_TYPE_GBK="GBK";
+    public static final String ENCODE_TYPE_UTF8="UTF-8";
+    public static final String ENCODE_TYPE_UNICODE="Unicode";
+    public static final String ENCODE_TYPE_UTF16="UTF-16BE";
+    public static final String ENCODE_TYPE_GB232="GB2312";
+    public static final String ENCODE_TYPE_ISO="ISO-8859-1";
+    
+    
     static final char [] ALPHABET1 =  { 'a','b','c','d','e','f','g',
             'h','i','j','k','l','m','n',
             'o','p','q','r','s','t',
@@ -98,4 +109,72 @@ public class Utils {
        
        return generateName(length);
    }
+   
+    public static String getEncoding(String str) {
+        String encode = ENCODE_TYPE_GB232;
+        try {
+            if (str.equals(new String(str.getBytes(encode), encode))) {
+                String s = encode;
+                return s;
+            }
+        } catch (Exception exception) {
+        }
+        encode = ENCODE_TYPE_ISO;
+        try {
+            if (str.equals(new String(str.getBytes(encode), encode))) {
+                String s1 = encode;
+                return s1;
+            }
+        } catch (Exception exception1) {
+        }
+        encode = ENCODE_TYPE_UTF8;
+        try {
+            if (str.equals(new String(str.getBytes(encode), encode))) {
+                String s2 = encode;
+                return s2;
+            }
+        } catch (Exception exception2) {
+        }
+        encode = ENCODE_TYPE_GBK;
+        try {
+            if (str.equals(new String(str.getBytes(encode), encode))) {
+                String s3 = encode;
+                return s3;
+            }
+        } catch (Exception exception3) {
+        }
+        return "";
+    }
+
+
+    /**
+     * 判断文件的编码格式
+     * 
+     * @param fileName
+     *            :file
+     * @return 文件编码格式
+     * @throws Exception
+     */
+    public static String codeString(File file) throws Exception {
+        BufferedInputStream bin = new BufferedInputStream(
+                new FileInputStream(file));
+        int p = (bin.read() << 8) + bin.read();
+        String code = null;
+
+        switch (p) {
+        case 0xefbb:
+            code = ENCODE_TYPE_UTF8;
+            break;
+        case 0xfffe:
+            code = ENCODE_TYPE_UNICODE;
+            break;
+        case 0xfeff:
+            code = ENCODE_TYPE_UTF16;
+            break;
+        default:
+            code = ENCODE_TYPE_GBK;
+        }
+
+        return code;
+    }
 }

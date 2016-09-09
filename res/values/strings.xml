@@ -12,7 +12,7 @@
     <string name="app_login">登录器</string>
     <string name="longclick_choose">长按选择数据文件</string>
     <string name="select_url">输入网址</string>
-    
+    <string name="encode_error">info文件格式错误，转换为UTF8再试</string>   
     <string-array
         name="errors"
         >
@@ -26,8 +26,10 @@
 		<item>"账户余额不足"</item>
 		<item>"账户被禁用"</item>
 		<item>"参数错误"</item>
+		
 		<item>"账户待审核"</item>
 		<item>"登录数达到上限"</item>
+		
 		<item>"参数itemid不能为空"</item>
 		<item>"项目不存在"</item>
 		<item>"项目未启用"</item>
@@ -37,6 +39,7 @@
 		<item>"号码已被释放"</item>
 		<item>"号码已离线"</item>
 		<item>"发送内容不能为空"</item>
+		
 		<item>"尚未收到短信"</item>
 		<item>"等待发送"</item>
 		<item>"正在发送"</item>
@@ -45,6 +48,7 @@
 		<item>"专属通道不存在"</item>
 		<item>"专属通道未启用"</item>
 		<item>"专属通道密码与项目不匹配"</item>
+		
 		<item>"系统错误"</item>
 		<item>"系统异常"</item>
 		<item>"系统繁忙"</item>
